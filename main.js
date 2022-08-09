@@ -1,3 +1,80 @@
+/*----- constants -----*/
+const values = {
+    '1': 'x',
+    '-1': 'o',
+    'null': ''
+};
+
+// const winningCombos = [
+//     [0, 1, 2],
+//     [3, 4, 5],
+//     [6, 7, 8],
+//     [0, 3, 6],
+//     [1, 4, 7],
+//     [2, 5, 8],
+//     [0, 4, 8],
+//     [2, 4, 6]
+//   ];
+
+/*----- app's state (variables) -----*/
+let board;
+let turn;
+let winner;
+
+/*----- cached element references -----*/
+const squaresEl = document.querySelectorAll('div.squares');
+const buttonEl = document.getElementById('start');
+const boardEl = document.querySelector('section');
+const message = document.querySelector('h1');
+
+console.log(boardEl)
+/*----- event listeners -----*/
+boardEl.addEventListener('click', handleMove);
+buttonEl.addEventListener('click', init);
+
+/*----- functions -----*/
+init();
+
+function handleMove(evt) {
+    // get index of squares
+    const idx = parseInt(evt.target.id.replace('square', ''))
+    if (board[idx]) return;
+    board[idx] = turn;
+    turn *= -1;
+    // winner = getWinner();
+    render();
+}
+
+// function getWinner() {
+//     for (let i = 0; i < winningCombos.length; i++) {
+//       if (Math.abs(board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]]) === 3) return board[winningCombos[i][0]];
+//     }
+//     if (board.includes(null)) return null;
+//     return 'T';
+//   }
+
+function render() {
+    board.forEach(function(square, idx) {
+        squaresEl[idx].innerHTML = values[square]
+    });
+    // if (winner === 'T') {
+    //     message.innerHTML = 'Rats, another tie!';
+    //   } else if (winner) {
+    //     message.innerHTML = `Congrats ${lookup[winner].toUpperCase()}!`;
+    //   } else {
+    //     message.innerHTML = `${lookup[turn].toUpperCase()}'s Turn`;
+    //   }
+}
+
+function init() {
+    board = [null, null, null, null, null, null, null, null, null];
+    turn = 1;
+    winner = null;
+    render();
+}
+
+
+
 // // globals
 // const menuLinks = [
 //     {text: 'about', href: '/about'},
