@@ -1,0 +1,23 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZeroDegree0123/Playground.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZeroDegree0123/Playground/issues"
+  },
+  "homepage": "https://github.com/ZeroDegree0123/Playground#readme",
+  "devDependencies": {
+    "jest": "^29.0.3"
+  }
+}
