@@ -19,5 +19,8 @@
   "homepage": "https://github.com/ZeroDegree0123/Playground#readme",
   "devDependencies": {
     "jest": "^29.0.3"
+  },
+  "dependencies": {
+    "kute.js": "^2.2.4"
   }
 }
