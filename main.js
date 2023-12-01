@@ -1,138 +1,37 @@
-
-
-class Node {
-    constructor(data, next = null) {
-        this.data = data;
-        this.next = next;
+// Recursion
+const recursion = (n) => {
+    if (n <= 0) {
+        console.log("complete")
+    } else {
+        console.log(n)
+        recursion(n - 1)
     }
+    return -1
 }
 
-class LinkedList {
-    constructor() {
-        this.head = null;
-        this.size = 0;
-    }
+// console.log(recursion(10))
 
-    // insert first node
-    insertFirst(data) {
-        this.head = new Node(data, this.head);
-        this.size++
-    }
+// Binary Search 
+const primes = [1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97];
+const binarySearch = (array, target) => {
+    let min = 0;
+    let max = array.length - 1;
 
-    // insert last node 
-    insertLast(data) {
-        let node = new Node(data);
-        let current;
-        if (!this.head) {
-            this.head = node;
+    while (min <= max) {
+        let guess = Math.floor((min + max) / 2);
+        if (array[guess] === target) {
+            return guess;
+
+        } else if (array[guess] < target) {
+            console.log("hit min")
+            min = guess + 1;
+
         } else {
-            current = this.head;
-
-            while(current.next) {
-                current = current.next
-            }
-            current.next = node;
-        }
-        this.size++
-    }
-
-    // insert at index
-    insertAt(data, index) {
-        // if index is out of range
-        if (index > 0 && index > this.size) {
-            return;
-        }
-        // if first index
-        if (index === 0) {
-            this.insertFirst(data);
-            return;
-        }
-        const node = new Node(data);
-        let current, previous;
-        
-        // set current to first
-        current = this.head
-        let count = 0;
-
-        while (count < index) {
-            previous = current; // Node before index
-            count++;
-            current = current.next; // Node after index
-        }
-
-        node.next = current;
-        previous.next = node;
-
-        this.size++;
-    }
-
-    // get at index
-    getAt(index) {
-        let current = this.head;
-        let count = 0;
-
-        while(current) {
-            if (count == index) {
-                console.log(current.data);
-            }
-            count++;
-            current = current.next;
-        }
-        return null;
-    }
-
-    // remove at index
-    removeAt(index) {
-        if (index > 0 && index > this.size) {
-            return;
-        }
-
-        let current = this.head;
-        let previous;
-        let count = 0;
-
-        // Remove first
-        if (index === 0) {
-            this.head = current.next;
-        } else {
-            while(count < index) {
-                count++;
-                previous = current;
-                current = current.next;
-            }
-
-            previous.next = current.next;
-        }
-
-        this.size--
-    }
-    // clear list 
-    clearList() {
-        this.head = null;
-        this.size = 0;
-    }
-
-    // print list data
-    printListData(){
-        let current = this.head;
-        while(current) {
-            console.log(current.data)
-            current = current.next;
+            console.log("hit max")
+            max = guess - 1;
         }
     }
-
+    return -1
 }
 
-const ll = new LinkedList();
-ll.insertFirst(100);
-ll.insertFirst(200);
-ll.insertFirst(300);
-ll.insertLast(400);
-
-ll.insertAt(500, 10)
-
-ll.getAt(3)
-
-console.log("space")
-ll.printListData();
-
+console.log(binarySearch(primes, 3))
